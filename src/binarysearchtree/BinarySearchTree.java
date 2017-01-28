@@ -4,6 +4,7 @@
  */
 package binarysearchtree;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -15,6 +16,8 @@ public class BinarySearchTree {
     /**
      * @param args the command line arguments
      */
+    
+    static ArrayList<Integer> binArray=new ArrayList<Integer>();
     public static void main(String[] args) {
         BinaryTreeNode root=new BinaryTreeNode(10);
         Random rnd =new Random();
@@ -24,8 +27,15 @@ public class BinarySearchTree {
         InsertNode(root, 9);
         InsertNode(root, 8);
         InsertNode(root, 11);
+        InsertNode(root, 13);
+        InsertNode(root, 2);
+        InsertNode(root, 3);
+        InsertNode(root, 1);
         System.out.println(root.left.data);
+//        FindKthSmallest(root);
         inOrder(root);
+        for(int i=0;i<binArray.size();i++)
+            System.out.print(binArray.get(i));
         SearchNode(root, 10);
         FindMin(root);
         FindMax(root);
@@ -33,13 +43,7 @@ public class BinarySearchTree {
         inOrder(root);
         // TODO code application logic here
     }
-    public static void inOrder(BinaryTreeNode root) {  
-        if (root == null)  
-         return;  
-        inOrder(root.left);  
-        System.out.print(root.data + " ");  
-        inOrder(root.right);  
-    }  
+    
 
     public static class BinaryTreeNode{
         public Integer data;
@@ -55,28 +59,18 @@ public class BinarySearchTree {
             left=null;
             right=null;
         }
-        public int getData(){
-            return data;
-        }
-        public void setData(int data){
-            this.data=data;
-        }
-        public BinaryTreeNode getLeft(){
-            return left;
-        }
-        public void setLeft(BinaryTreeNode left){
-            this.left =left;
-        }
-        public BinaryTreeNode getRight(){
-            return right;
-        }
-        public void setRight(BinaryTreeNode right){
-            this.right =right;
-        }
-        
-    
-        
+     
     }
+    
+    public static void inOrder(BinaryTreeNode root) {  
+        if (root == null)  
+         return;  
+        inOrder(root.left);  
+        //System.out.print(root.data + " ");  
+        binArray.add(root.data);
+        inOrder(root.right);  
+    }  
+    
     public static void InsertNode(BinaryTreeNode root,int data){
             BinaryTreeNode node=new BinaryTreeNode(data);
             if(root.data==null){
@@ -170,6 +164,12 @@ public class BinarySearchTree {
                 
             }
             return root;
+        }
+        public static int FindKthSmallest(BinaryTreeNode root){
+            int val=0;
+            val=FindKthSmallest(root.left);
+            binArray.add(val);
+            
         }
     
 }
