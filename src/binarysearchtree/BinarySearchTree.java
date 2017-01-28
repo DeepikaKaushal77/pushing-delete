@@ -147,40 +147,29 @@ public class BinarySearchTree {
             return root;
         }
         public static BinaryTreeNode DeleteNode(BinaryTreeNode root,int data){
-            if(root.data == null)
+            if(root==null)
                 return null;
+            if(data<root.data)
+                root.left=DeleteNode(root.left, data);
+            if(data>root.data)
+                root.right=DeleteNode(root.right, data);
             else{
-                if(data<root.data){
-                    root.left=DeleteNode(root.left, data);
-                   
+                if(root.left==null && root.right==null)
+                    root=null;
+                else if(root.left==null){
+                    root=root.right;
                 }
-                    
-                else if(data>root.data){
-                    root.right=DeleteNode(root.right, data);
+                else if(root.right==null){
+                    root=root.left;
                 }
                 else{
-                    if(root.left==null && root.right==null)
-                        root=null;
-                    else if(root.left==null)
-                    {
-                        root=root.right;
-                    }
-                    else if(root.right==null)
-                    {
-                        root=root.left;
-                    }
-                    else {
-                        BinaryTreeNode temp =FindMin(root.right);
-                       root.data=temp.data;
-                        DeleteNode(root.right, temp.data);
-                        
-                    }
+                    BinaryTreeNode temp=FindMin(root.right);
+                    root.data=temp.data;
+                    DeleteNode(root.right, temp.data);
                 }
-            
+                
             }
             return root;
-             
-
         }
     
 }
