@@ -25,13 +25,22 @@ public class BinarySearchTree {
         InsertNode(root, 8);
         InsertNode(root, 11);
         System.out.println(root.left.data);
-//        SearchNode(root, 10);
-//        FindMin(root);
-//        FindMax(root);
-        DeleteNode(root, 9);
-        System.out.println(root.left.data);
+        inOrder(root);
+        SearchNode(root, 10);
+        FindMin(root);
+        FindMax(root);
+        DeleteNode(root, 10);
+        inOrder(root);
         // TODO code application logic here
     }
+    public static void inOrder(BinaryTreeNode root) {  
+        if (root == null)  
+         return;  
+        inOrder(root.left);  
+        System.out.print(root.data + " ");  
+        inOrder(root.right);  
+    }  
+
     public static class BinaryTreeNode{
         public Integer data;
         public BinaryTreeNode left;
@@ -95,9 +104,9 @@ public class BinarySearchTree {
             }
             
         }
-        public static void SearchNode(BinaryTreeNode root, int data){
+        public static BinaryTreeNode SearchNode(BinaryTreeNode root, int data){
             if(root.data == null)
-                System.out.println("not found");
+                return null;
             else{
                 if(data<root.data){
                     root=root.left;
@@ -111,7 +120,7 @@ public class BinarySearchTree {
                 else
                     System.out.println("found");
             }
-            
+            return root;
         }
         public static BinaryTreeNode FindMin(BinaryTreeNode root){
             if(root.data==null){
@@ -142,14 +151,12 @@ public class BinarySearchTree {
                 return null;
             else{
                 if(data<root.data){
-                    root=root.left;
-                    root=DeleteNode(root, data);
+                    root.left=DeleteNode(root.left, data);
                    
                 }
                     
                 else if(data>root.data){
-                    root=root.right;
-                    DeleteNode(root, data);
+                    root.right=DeleteNode(root.right, data);
                 }
                 else{
                     if(root.left==null && root.right==null)
@@ -163,14 +170,17 @@ public class BinarySearchTree {
                         root=root.left;
                     }
                     else {
-                        BinaryTreeNode temp =FindMax(root.left);
-                        DeleteNode(root.left, temp.data);
-                        root=temp;
+                        BinaryTreeNode temp =FindMin(root.right);
+                       root.data=temp.data;
+                        DeleteNode(root.right, temp.data);
+                        
                     }
                 }
             
             }
             return root;
+             
+
         }
     
 }
