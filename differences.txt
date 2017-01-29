@@ -1,0 +1,22 @@
+Difference between trees and a graph:
+
+Both are non linear structures.Tree is a special type of graph.
+Tree is hierarchical graph is network. Every node can have only 1 parent. So parent child relation.No such rules apply to graph.
+Trees don't have loops but graphs can have.
+Trees are directed acyclic graphs.
+
+
+
+Difference between trees and a binary tree:
+Trees can have any no. of nodes but a binary tree can have atmost 2 nodes.
+so binary trees are kind of trees having 0 to 2 children.
+Heaps are implemented using almost complete binary trees i.e. n node can have child only when n-1 have both children.
+
+
+
+Difference between binary tree and binary search tree:
+Binary search tree is a kind of binary tree. It can also have atmost 2 children but all nodes on the left subtree must be lesser than the root node and all nodes on right must be higher than the root node. 
+
+
+
+
