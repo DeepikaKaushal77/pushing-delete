@@ -31,11 +31,10 @@ public class BinarySearchTree {
         InsertNode(root, 2);
         InsertNode(root, 3);
         InsertNode(root, 1);
-        System.out.println(root.left.data);
-//        FindKthSmallest(root);
+        //System.out.println(root.left.data);
+        FindKthSmallest(root,3);
         inOrder(root);
-        for(int i=0;i<binArray.size();i++)
-            System.out.print(binArray.get(i));
+        binArray.get(3);
         SearchNode(root, 10);
         FindMin(root);
         FindMax(root);
@@ -65,10 +64,11 @@ public class BinarySearchTree {
     public static void inOrder(BinaryTreeNode root) {  
         if (root == null)  
          return;  
+        
         inOrder(root.left);  
-        //System.out.print(root.data + " ");  
-        binArray.add(root.data);
-        inOrder(root.right);  
+        System.out.print(root.data + " ");  
+        inOrder(root.right); 
+        
     }  
     
     public static void InsertNode(BinaryTreeNode root,int data){
@@ -165,11 +165,14 @@ public class BinarySearchTree {
             }
             return root;
         }
-        public static int FindKthSmallest(BinaryTreeNode root){
-            int val=0;
-            val=FindKthSmallest(root.left);
-            binArray.add(val);
-            
+        public static void FindKthSmallest(BinaryTreeNode root,int k){
+            if(root==null)
+                return;
+            FindKthSmallest(root.left, k);
+            binArray.add(root.data);
+            if(binArray.size()==k)
+                System.out.println(binArray.get(k-1));
+            FindKthSmallest(root.right, k);
         }
     
 }
